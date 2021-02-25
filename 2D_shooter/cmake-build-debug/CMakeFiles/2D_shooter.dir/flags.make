@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /home/kelj0/github/gamedevplayground/SFML/include 
+CXX_INCLUDES = 
 

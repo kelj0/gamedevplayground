@@ -32,6 +32,8 @@
 *.app
 
 
-
 # SFML
 SFML/*
+
+# clion
+.idea/*

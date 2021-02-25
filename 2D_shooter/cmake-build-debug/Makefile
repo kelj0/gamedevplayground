@@ -143,6 +143,60 @@ game/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/build
 .PHONY : game/fast
 
+Engine.o: Engine.cpp.o
+
+.PHONY : Engine.o
+
+# target to build an object file
+Engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Engine.cpp.o
+.PHONY : Engine.cpp.o
+
+Engine.i: Engine.cpp.i
+
+.PHONY : Engine.i
+
+# target to preprocess a source file
+Engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Engine.cpp.i
+.PHONY : Engine.cpp.i
+
+Engine.s: Engine.cpp.s
+
+.PHONY : Engine.s
+
+# target to generate assembly for a file
+Engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Engine.cpp.s
+.PHONY : Engine.cpp.s
+
+Player.o: Player.cpp.o
+
+.PHONY : Player.o
+
+# target to build an object file
+Player.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Player.cpp.o
+.PHONY : Player.cpp.o
+
+Player.i: Player.cpp.i
+
+.PHONY : Player.i
+
+# target to preprocess a source file
+Player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Player.cpp.i
+.PHONY : Player.cpp.i
+
+Player.s: Player.cpp.s
+
+.PHONY : Player.s
+
+# target to generate assembly for a file
+Player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Player.cpp.s
+.PHONY : Player.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -179,6 +233,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... game"
+	@echo "... Engine.o"
+	@echo "... Engine.i"
+	@echo "... Engine.s"
+	@echo "... Player.o"
+	@echo "... Player.i"
+	@echo "... Player.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
