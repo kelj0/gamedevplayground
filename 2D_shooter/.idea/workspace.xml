@@ -5,13 +5,16 @@
       <config projectName="2D_shooter" targetName="game" />
     </generated>
   </component>
-  <component name="CMakeSettings">
+  <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="554e50f9-fab9-42f3-8433-2b655e7734ff" name="Default Changelist" comment="" />
+    <list default="true" id="554e50f9-fab9-42f3-8433-2b655e7734ff" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1614267976960</updated>
       <workItem from="1614267978048" duration="2678000" />
-      <workItem from="1614270667247" duration="15729000" />
+      <workItem from="1614270667247" duration="719000" />
     </task>
     <servers />
   </component>
