@@ -37,3 +37,4 @@ SFML/*
 
 # clion
 .idea/*
+cmake-build-debug/*
