@@ -9,8 +9,14 @@ set(SFML_DIR "~/github/gamedevplayground/SFML/lib/cmake/SFML")
 
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 file(GLOB SOURCES
-        *.h
-        *.cpp)
+        src/Position.h
+        src/Position.cpp
+        src/Player.h
+        src/Player.cpp
+        src/Engine.h
+        src/Engine.cpp
+        main.cpp
+        )
 
 add_executable(game
         ${SOURCES})

@@ -6,35 +6,35 @@
 
 #IncludeRegexTransform: 
 
-/home/kelj0/github/gamedevplayground/2D_shooter/Engine.cpp
-Engine.h
-/home/kelj0/github/gamedevplayground/2D_shooter/Engine.h
+/home/kelj0/github/gamedevplayground/2D_shooter/main.cpp
+SFML/Graphics.hpp
+-
+src/Engine.h
+/home/kelj0/github/gamedevplayground/2D_shooter/src/Engine.h
+src/Player.h
+/home/kelj0/github/gamedevplayground/2D_shooter/src/Player.h
+src/Position.h
+/home/kelj0/github/gamedevplayground/2D_shooter/src/Position.h
+vector
+-
 
-/home/kelj0/github/gamedevplayground/2D_shooter/Engine.h
+/home/kelj0/github/gamedevplayground/2D_shooter/src/Engine.h
 SFML/Graphics/RenderWindow.hpp
 -
 Player.h
-/home/kelj0/github/gamedevplayground/2D_shooter/Player.h
+/home/kelj0/github/gamedevplayground/2D_shooter/src/Player.h
+Position.h
+/home/kelj0/github/gamedevplayground/2D_shooter/src/Position.h
 
-/home/kelj0/github/gamedevplayground/2D_shooter/Player.cpp
-Player.h
-/home/kelj0/github/gamedevplayground/2D_shooter/Player.h
-
-/home/kelj0/github/gamedevplayground/2D_shooter/Player.h
+/home/kelj0/github/gamedevplayground/2D_shooter/src/Player.h
 string
 -
 SFML/Graphics/RectangleShape.hpp
 -
+Position.h
+/home/kelj0/github/gamedevplayground/2D_shooter/src/Position.h
 
-/home/kelj0/github/gamedevplayground/2D_shooter/main.cpp
-SFML/Graphics.hpp
--
-Engine.h
-/home/kelj0/github/gamedevplayground/2D_shooter/Engine.h
-Player.h
-/home/kelj0/github/gamedevplayground/2D_shooter/Player.h
-vector
--
+/home/kelj0/github/gamedevplayground/2D_shooter/src/Position.h
 
 /home/kelj0/github/gamedevplayground/SFML/include/SFML/Config.hpp
 TargetConditionals.h

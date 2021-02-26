@@ -1,12 +1,9 @@
-//
-// Created by kelj0 on 2/25/21.
-//
-
 #ifndef INC_2D_SHOOTER_ENGINE_H
 #define INC_2D_SHOOTER_ENGINE_H
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Player.h"
+#include "Position.h"
 
 class Engine {
 private:
@@ -17,7 +14,9 @@ private:
 public:
     Engine(sf::RenderWindow* window, std::vector<Player*>* players);
     void tick();
-    void movePlayer(Player &p, float new_x, float new_y);
+    void movePlayer(Player &p, Position new_position);
+
+    void applyPhysics();
 };
 
 

@@ -86,19 +86,25 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/Engine.cpp">
-			<Option target="game"/>
-		</Unit>
-		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/Engine.h">
-			<Option target="game"/>
-		</Unit>
-		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/Player.cpp">
-			<Option target="game"/>
-		</Unit>
-		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/Player.h">
-			<Option target="game"/>
-		</Unit>
 		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/main.cpp">
+			<Option target="game"/>
+		</Unit>
+		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/src/Engine.cpp">
+			<Option target="game"/>
+		</Unit>
+		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/src/Engine.h">
+			<Option target="game"/>
+		</Unit>
+		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/src/Player.cpp">
+			<Option target="game"/>
+		</Unit>
+		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/src/Player.h">
+			<Option target="game"/>
+		</Unit>
+		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/src/Position.cpp">
+			<Option target="game"/>
+		</Unit>
+		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/src/Position.h">
 			<Option target="game"/>
 		</Unit>
 		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/CMakeLists.txt">

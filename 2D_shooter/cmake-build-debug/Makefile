@@ -143,60 +143,6 @@ game/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/build
 .PHONY : game/fast
 
-Engine.o: Engine.cpp.o
-
-.PHONY : Engine.o
-
-# target to build an object file
-Engine.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Engine.cpp.o
-.PHONY : Engine.cpp.o
-
-Engine.i: Engine.cpp.i
-
-.PHONY : Engine.i
-
-# target to preprocess a source file
-Engine.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Engine.cpp.i
-.PHONY : Engine.cpp.i
-
-Engine.s: Engine.cpp.s
-
-.PHONY : Engine.s
-
-# target to generate assembly for a file
-Engine.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Engine.cpp.s
-.PHONY : Engine.cpp.s
-
-Player.o: Player.cpp.o
-
-.PHONY : Player.o
-
-# target to build an object file
-Player.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Player.cpp.o
-.PHONY : Player.cpp.o
-
-Player.i: Player.cpp.i
-
-.PHONY : Player.i
-
-# target to preprocess a source file
-Player.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Player.cpp.i
-.PHONY : Player.cpp.i
-
-Player.s: Player.cpp.s
-
-.PHONY : Player.s
-
-# target to generate assembly for a file
-Player.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/Player.cpp.s
-.PHONY : Player.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -224,6 +170,87 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Engine.o: src/Engine.cpp.o
+
+.PHONY : src/Engine.o
+
+# target to build an object file
+src/Engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/Engine.cpp.o
+.PHONY : src/Engine.cpp.o
+
+src/Engine.i: src/Engine.cpp.i
+
+.PHONY : src/Engine.i
+
+# target to preprocess a source file
+src/Engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/Engine.cpp.i
+.PHONY : src/Engine.cpp.i
+
+src/Engine.s: src/Engine.cpp.s
+
+.PHONY : src/Engine.s
+
+# target to generate assembly for a file
+src/Engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/Engine.cpp.s
+.PHONY : src/Engine.cpp.s
+
+src/Player.o: src/Player.cpp.o
+
+.PHONY : src/Player.o
+
+# target to build an object file
+src/Player.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/Player.cpp.o
+.PHONY : src/Player.cpp.o
+
+src/Player.i: src/Player.cpp.i
+
+.PHONY : src/Player.i
+
+# target to preprocess a source file
+src/Player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/Player.cpp.i
+.PHONY : src/Player.cpp.i
+
+src/Player.s: src/Player.cpp.s
+
+.PHONY : src/Player.s
+
+# target to generate assembly for a file
+src/Player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/Player.cpp.s
+.PHONY : src/Player.cpp.s
+
+src/Position.o: src/Position.cpp.o
+
+.PHONY : src/Position.o
+
+# target to build an object file
+src/Position.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/Position.cpp.o
+.PHONY : src/Position.cpp.o
+
+src/Position.i: src/Position.cpp.i
+
+.PHONY : src/Position.i
+
+# target to preprocess a source file
+src/Position.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/Position.cpp.i
+.PHONY : src/Position.cpp.i
+
+src/Position.s: src/Position.cpp.s
+
+.PHONY : src/Position.s
+
+# target to generate assembly for a file
+src/Position.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/Position.cpp.s
+.PHONY : src/Position.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -233,15 +260,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... game"
-	@echo "... Engine.o"
-	@echo "... Engine.i"
-	@echo "... Engine.s"
-	@echo "... Player.o"
-	@echo "... Player.i"
-	@echo "... Player.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/Engine.o"
+	@echo "... src/Engine.i"
+	@echo "... src/Engine.s"
+	@echo "... src/Player.o"
+	@echo "... src/Player.i"
+	@echo "... src/Player.s"
+	@echo "... src/Position.o"
+	@echo "... src/Position.i"
+	@echo "... src/Position.s"
 .PHONY : help
 
 

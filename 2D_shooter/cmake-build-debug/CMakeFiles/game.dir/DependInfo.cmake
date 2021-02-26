@@ -4,9 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/kelj0/github/gamedevplayground/2D_shooter/Engine.cpp" "/home/kelj0/github/gamedevplayground/2D_shooter/cmake-build-debug/CMakeFiles/game.dir/Engine.cpp.o"
-  "/home/kelj0/github/gamedevplayground/2D_shooter/Player.cpp" "/home/kelj0/github/gamedevplayground/2D_shooter/cmake-build-debug/CMakeFiles/game.dir/Player.cpp.o"
   "/home/kelj0/github/gamedevplayground/2D_shooter/main.cpp" "/home/kelj0/github/gamedevplayground/2D_shooter/cmake-build-debug/CMakeFiles/game.dir/main.cpp.o"
+  "/home/kelj0/github/gamedevplayground/2D_shooter/src/Engine.cpp" "/home/kelj0/github/gamedevplayground/2D_shooter/cmake-build-debug/CMakeFiles/game.dir/src/Engine.cpp.o"
+  "/home/kelj0/github/gamedevplayground/2D_shooter/src/Player.cpp" "/home/kelj0/github/gamedevplayground/2D_shooter/cmake-build-debug/CMakeFiles/game.dir/src/Player.cpp.o"
+  "/home/kelj0/github/gamedevplayground/2D_shooter/src/Position.cpp" "/home/kelj0/github/gamedevplayground/2D_shooter/cmake-build-debug/CMakeFiles/game.dir/src/Position.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
