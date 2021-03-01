@@ -10,6 +10,7 @@ private:
     Position _pos = Position(0, 0);
     float _width, _height;
     float _moving_speed = 0.1;
+    sf::Vector2f movement_vector;
     int _hp;
     std::string _name;
 public:
