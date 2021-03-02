@@ -7,16 +7,16 @@
 
 class Engine {
 private:
-    float MAX_PLAYER_SPEED = 1;
+    float MAX_PLAYER_SPEED = 1000;
     std::vector<Player*>* _players;
     sf::RenderWindow* _window;
     sf::Vector2u _world_dimensions;
-    float delta_time;
+    float* delta_time;
     void drawPlayers();
 public:
-    Engine(sf::RenderWindow* window, std::vector<Player*>* players, float &delta_time);
+    Engine(sf::RenderWindow* window, std::vector<Player*>* players, float* delta_time);
     void tick();
-    void movePlayer(Player &p, Position new_position, bool gravity);
+    void movePlayer(Player &p, sf::Vector2f new_vector, bool gravity);
 
     void applyPhysics();
 
