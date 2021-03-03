@@ -83,3 +83,18 @@ void Player::setSpeed(float new_speed) {
     this->_moving_speed = new_speed;
 }
 
+void Player::jump(sf::Vector2f jump_vector, float delta_t) {
+    if (jumping)
+        return;
+    jumping = true;
+    on_floor = false;
+    this->movement_vector += jump_vector*delta_t;
+}
+
+void Player::resetJump() {
+    this->jumping = false;
+}
+
+float Player::getBaseSpeed() {
+    return _base_speed;
+}

@@ -15,6 +15,8 @@ file(GLOB SOURCES
         src/Player.cpp
         src/Engine.h
         src/Engine.cpp
+        src/DebugEngine.h
+        src/DebugEngine.cpp
         main.cpp
         )
 

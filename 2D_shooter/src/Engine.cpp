@@ -1,3 +1,4 @@
+#include <SFML/Window/Keyboard.hpp>
 #include "Engine.h"
 
 Engine::Engine(sf::RenderWindow *window, std::vector<Player *> *players, float* delta_time) {
@@ -23,6 +24,8 @@ void Engine::movePlayer(Player &p, sf::Vector2f new_vector, bool gravity) {
         }
         if (p.checkColision(*player, _world_dimensions)) {
             p.movement_vector = old_vector;
+            if (p.getPosition().getY() + p.getHeight() > _world_dimensions.y)
+                old_pos = Position(old_pos.getX(), _world_dimensions.y-p.getHeight());
             p.setPosition(old_pos);
             return;
         }
@@ -38,25 +41,64 @@ void Engine::drawPlayers() {
 
 void Engine::applyPhysics() {
     for (Player* p: *_players) {
-        if (!p->is_moving) {
-            if (p->getPosition().getY() + p->getHeight() < _world_dimensions.y-1) {
-                movePlayer(*p, sf::Vector2f(0, p->getSpeed()), true);
+        if (!p->is_flying && !p->on_floor) {
+            if (p->getPosition().getY() + p->getHeight() == _world_dimensions.y && !p->jumping) {
+                p->setSpeed(p->getBaseSpeed());
+                p->on_floor = true;
+                p->movement_vector = sf::Vector2f(p->movement_vector.x, 0);
+                //p->setPosition(Position(p->getPosition().getX(), _world_dimensions.y));
+                p->resetJump();
+            } else {
+                this->movePlayer(*p, this->gravity_vector, true);
                 if (p->getSpeed() < MAX_PLAYER_SPEED) {
-                    p->setSpeed(p->getSpeed() + *delta_time*981);
+                    p->setSpeed(p->getSpeed() + *delta_time*this->gravity_vector.y);
+                } else {
+                    p->setSpeed(MAX_PLAYER_SPEED);
                 }
-            } else if (p->getPosition().getY() < _world_dimensions.y) {
-                p->setPosition(Position(p->getPosition().getX(), _world_dimensions.y - p->getHeight()-0.1));
-                p->setSpeed(0.f);
-                p->movement_vector = sf::Vector2f(0, 0);
             }
         }
     }
 }
 
 void Engine::tick() {
-    _window->clear();
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        this->movePlayer((*(*_players)[0]), sf::Vector2f(0,-(*(*_players)[0]).getSpeed()), false);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        this->movePlayer((*(*_players)[0]), sf::Vector2f((*(*_players)[0]).getSpeed(), 0), false);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        this->movePlayer((*(*_players)[0]), sf::Vector2f(0, (*(*_players)[0]).getSpeed()), false);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        this->movePlayer((*(*_players)[0]), sf::Vector2f(-(*(*_players)[0]).getSpeed(), 0), false);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        this->movePlayer((*(*_players)[1]), sf::Vector2f(0, -(*(*_players)[1]).getSpeed()), false);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        this->movePlayer((*(*_players)[1]), sf::Vector2f((*(*_players)[1]).getSpeed(), 0), false);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        this->movePlayer((*(*_players)[1]), sf::Vector2f(0, (*(*_players)[1]).getSpeed()), false);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        this->movePlayer((*(*_players)[1]), sf::Vector2f(-(*(*_players)[1]).getSpeed(), 0), false);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        (*(*_players)[0]).jump(jump_vector, *delta_time);
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && fly_cooldown > 0.5) {
+        fly_cooldown = 0;
+        (*(*_players)[0]).is_flying = !(*(*_players)[0]).is_flying;
+    } else {
+        fly_cooldown += *delta_time;
+    }
+
+    this->_window->clear();
     applyPhysics();
     drawPlayers();
-    _window->display();
+    this->_window->display();
 }
 

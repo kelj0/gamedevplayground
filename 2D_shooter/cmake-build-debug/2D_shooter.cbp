@@ -89,6 +89,12 @@
 		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/main.cpp">
 			<Option target="game"/>
 		</Unit>
+		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/src/DebugEngine.cpp">
+			<Option target="game"/>
+		</Unit>
+		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/src/DebugEngine.h">
+			<Option target="game"/>
+		</Unit>
 		<Unit filename="/home/kelj0/github/gamedevplayground/2D_shooter/src/Engine.cpp">
 			<Option target="game"/>
 		</Unit>

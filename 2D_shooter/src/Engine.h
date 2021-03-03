@@ -12,6 +12,9 @@ private:
     sf::RenderWindow* _window;
     sf::Vector2u _world_dimensions;
     float* delta_time;
+    float fly_cooldown = 0.f;
+    sf::Vector2f gravity_vector = sf::Vector2f(0, 98.1);
+    sf::Vector2f jump_vector = sf::Vector2f(0,-1000);
     void drawPlayers();
 public:
     Engine(sf::RenderWindow* window, std::vector<Player*>* players, float* delta_time);
@@ -19,7 +22,6 @@ public:
     void movePlayer(Player &p, sf::Vector2f new_vector, bool gravity);
 
     void applyPhysics();
-
 };
 
 

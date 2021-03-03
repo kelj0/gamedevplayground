@@ -1,6 +1,7 @@
 #ifndef INC_2D_SHOOTER_POSITION_H
 #define INC_2D_SHOOTER_POSITION_H
 
+#include <string>
 
 class Position {
 private:

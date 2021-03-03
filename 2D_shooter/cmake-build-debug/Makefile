@@ -170,6 +170,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/DebugEngine.o: src/DebugEngine.cpp.o
+
+.PHONY : src/DebugEngine.o
+
+# target to build an object file
+src/DebugEngine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/DebugEngine.cpp.o
+.PHONY : src/DebugEngine.cpp.o
+
+src/DebugEngine.i: src/DebugEngine.cpp.i
+
+.PHONY : src/DebugEngine.i
+
+# target to preprocess a source file
+src/DebugEngine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/DebugEngine.cpp.i
+.PHONY : src/DebugEngine.cpp.i
+
+src/DebugEngine.s: src/DebugEngine.cpp.s
+
+.PHONY : src/DebugEngine.s
+
+# target to generate assembly for a file
+src/DebugEngine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/DebugEngine.cpp.s
+.PHONY : src/DebugEngine.cpp.s
+
 src/Engine.o: src/Engine.cpp.o
 
 .PHONY : src/Engine.o
@@ -263,6 +290,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/DebugEngine.o"
+	@echo "... src/DebugEngine.i"
+	@echo "... src/DebugEngine.s"
 	@echo "... src/Engine.o"
 	@echo "... src/Engine.i"
 	@echo "... src/Engine.s"

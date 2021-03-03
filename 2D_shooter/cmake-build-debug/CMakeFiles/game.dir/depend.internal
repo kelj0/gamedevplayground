@@ -3,6 +3,7 @@
 
 CMakeFiles/game.dir/main.cpp.o
  /home/kelj0/github/gamedevplayground/2D_shooter/main.cpp
+ /home/kelj0/github/gamedevplayground/2D_shooter/src/DebugEngine.h
  /home/kelj0/github/gamedevplayground/2D_shooter/src/Engine.h
  /home/kelj0/github/gamedevplayground/2D_shooter/src/Player.h
  /home/kelj0/github/gamedevplayground/2D_shooter/src/Position.h
@@ -80,6 +81,52 @@ CMakeFiles/game.dir/main.cpp.o
  /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/Window.hpp
  /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/WindowHandle.hpp
  /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/WindowStyle.hpp
+CMakeFiles/game.dir/src/DebugEngine.cpp.o
+ /home/kelj0/github/gamedevplayground/2D_shooter/src/DebugEngine.cpp
+ /home/kelj0/github/gamedevplayground/2D_shooter/src/DebugEngine.h
+ /home/kelj0/github/gamedevplayground/2D_shooter/src/Player.h
+ /home/kelj0/github/gamedevplayground/2D_shooter/src/Position.h
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Config.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/BlendMode.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Color.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Drawable.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Export.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Font.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Glyph.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Image.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/PrimitiveType.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Rect.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Rect.inl
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/RectangleShape.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/RenderStates.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/RenderTarget.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/RenderWindow.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Shape.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Text.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Texture.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Transform.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Transformable.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/Vertex.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/VertexArray.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Graphics/View.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/System/Clock.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/System/Export.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/System/NonCopyable.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/System/String.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/System/String.inl
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/System/Time.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/System/Utf.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/System/Utf.inl
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/System/Vector2.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/System/Vector2.inl
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/ContextSettings.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/Cursor.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/Export.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/GlResource.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/VideoMode.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/Window.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/WindowHandle.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/WindowStyle.hpp
 CMakeFiles/game.dir/src/Engine.cpp.o
  /home/kelj0/github/gamedevplayground/2D_shooter/src/Engine.cpp
  /home/kelj0/github/gamedevplayground/2D_shooter/src/Engine.h
@@ -118,6 +165,7 @@ CMakeFiles/game.dir/src/Engine.cpp.o
  /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/Cursor.hpp
  /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/Export.hpp
  /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/GlResource.hpp
+ /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/Keyboard.hpp
  /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/VideoMode.hpp
  /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/Window.hpp
  /home/kelj0/github/gamedevplayground/SFML/include/SFML/Window/WindowHandle.hpp
