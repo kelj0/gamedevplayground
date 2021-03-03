@@ -1,0 +1,5 @@
+/home/kelj0/Downloads/clion-2020.3.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/kelj0/github/gamedevplayground/2D_shooter_v2
+-- Found SFML 2.5.1 in /home/kelj0/github/gamedevplayground/SFML/lib/cmake/SFML
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/kelj0/github/gamedevplayground/2D_shooter_v2/cmake-build-debug
