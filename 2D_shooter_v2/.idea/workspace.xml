@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="2D_shooter_v2" targetName="game" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a8141826-c76d-4571-b17e-265611627078" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/DebugEngine.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DebugEngine.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Engine.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Engine.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/.idea/2D_shooter.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/2D_shooter.cbp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/2D_shooter.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/2D_shooter.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/2D_shooter.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/2D_shooter.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/2D_shooter.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/2D_shooter.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/2D_shooter.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/3.17.5/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/3.17.5/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/3.17.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/3.17.5/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/3.17.5/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/3.17.5/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/3.17.5/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/game.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/game.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/game.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/game.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/game.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/game.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/game.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/game.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/game.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/cmake-build-debug/game" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/src/DebugEngine.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/src/DebugEngine.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/src/Engine.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/src/Engine.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/src/Player.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/src/Player.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/src/Position.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../2D_shooter/src/Position.h" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1pGLgPu0P5QCDli03cehyUEJI94" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../2D_shooter_v1" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="game" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2D_shooter_v2" TARGET_NAME="game" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2D_shooter_v2" RUN_TARGET_NAME="game">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a8141826-c76d-4571-b17e-265611627078" name="Default Changelist" comment="" />
+      <created>1614804590908</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614804590908</updated>
+      <workItem from="1614804591962" duration="18342000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

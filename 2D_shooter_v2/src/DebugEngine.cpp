@@ -13,7 +13,8 @@ void DebugEngine::updateData(){
     for (Player *p: _players) {
         b += p->name + ": " + std::to_string(p->x) + ", " + std::to_string(p->y) + "\n";
         b += "m_vector: " + std::to_string(p->vec_movement.x) + ", " + std::to_string(p->vec_movement.y) + "\n";
-
+        b += "speed: " + std::to_string(p->getSpeed()) + "\n";
+        b += "moving: " + std::to_string(p->is_moving) + "\n";
     }
     t.setString(b);
     t.setCharacterSize(20);

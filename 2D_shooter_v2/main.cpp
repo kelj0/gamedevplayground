@@ -10,8 +10,8 @@ int main()
     sf::RenderWindow debug_window(sf::VideoMode(400, 200), "dev");
     debug_window.setPosition(sf::Vector2<int>(400,200));
     window.setPosition(sf::Vector2<int>(800, 200));
-    Player p1("player1", 175, 75, 20, 40, 10);
-    Player p2("player2", 200, 75, 20, 40, 20);
+    Player p1("player1", 175, 75, 20, 40, 1);
+    Player p2("player2", 200, 75, 20, 40, 2);
     std::vector<Player*> players {&p1, &p2};
     float delta_time = 0.f;
     sf::Clock clock;
@@ -21,7 +21,7 @@ int main()
         return 0;
 
     DebugEngine dengine(debug_window, players, font);
-    Engine engine(&window, &players, delta_time);
+    Engine engine(&window, &players, delta_time, window.getSize());
     while (window.isOpen()) {
         delta_time = clock.restart().asSeconds();
         if (delta_time > 1.f / 20.f)
@@ -33,25 +33,9 @@ int main()
                 case sf::Event::Closed:
                     window.close();
                     break;
-                case sf::Event::KeyReleased:
-                    if( event.key.code == sf::Keyboard::Up ||
-                        event.key.code == sf::Keyboard::Right ||
-                        event.key.code == sf::Keyboard::Down ||
-                        event.key.code == sf::Keyboard::Left) {
-
-                        p1.is_moving = false;
-                    }
-
-                    if (event.key.code == sf::Keyboard::W ||
-                        event.key.code == sf::Keyboard::D ||
-                        event.key.code == sf::Keyboard::S ||
-                        event.key.code == sf::Keyboard::A) {
-
-                        p2.is_moving = false;
-                    }
                 case sf::Event::LostFocus:
-                    p1.is_moving = false;
-                    p2.is_moving = false; //TODO add multiplayer support
+                    players[0]->is_moving = false;
+                    players[1]->is_moving = false; //TODO add multiplayer support
                 default:
                     ;
                     //break;
