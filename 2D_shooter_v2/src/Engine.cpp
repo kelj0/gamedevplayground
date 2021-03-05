@@ -17,13 +17,13 @@ void Engine::handleInput() {
     } else {
         (*players)[0]->is_moving = true;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            (*players)[0]->updateMovementVector(sf::Vector2f(0, -(*players)[0]->getSpeed()));
+            (*players)[0]->updateMovementVector(sf::Vector2f(0, -(*players)[0]->getSpeed()), *delta_time);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-            (*players)[0]->updateMovementVector(sf::Vector2f((*players)[0]->getSpeed(), 0));
+            (*players)[0]->updateMovementVector(sf::Vector2f((*players)[0]->getSpeed(), 0), *delta_time);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            (*players)[0]->updateMovementVector(sf::Vector2f(0, (*players)[0]->getSpeed()));
+            (*players)[0]->updateMovementVector(sf::Vector2f(0, (*players)[0]->getSpeed()), *delta_time);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-            (*players)[0]->updateMovementVector(sf::Vector2f(-(*players)[0]->getSpeed(), 0));
+            (*players)[0]->updateMovementVector(sf::Vector2f(-(*players)[0]->getSpeed(), 0), *delta_time);
     }
     if (    !sf::Keyboard::isKeyPressed(sf::Keyboard::W) &&
             !sf::Keyboard::isKeyPressed(sf::Keyboard::A) &&
@@ -33,13 +33,13 @@ void Engine::handleInput() {
     } else {
         (*players)[1]->is_moving = true;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            (*players)[1]->updateMovementVector(sf::Vector2f(0, -(*players)[1]->getSpeed()));
+            (*players)[1]->updateMovementVector(sf::Vector2f(0, -(*players)[1]->getSpeed()), *delta_time);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-            (*players)[1]->updateMovementVector(sf::Vector2f((*players)[1]->getSpeed(), 0));
+            (*players)[1]->updateMovementVector(sf::Vector2f((*players)[1]->getSpeed(), 0), *delta_time);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-            (*players)[1]->updateMovementVector(sf::Vector2f(0, (*players)[1]->getSpeed()));
+            (*players)[1]->updateMovementVector(sf::Vector2f(0, (*players)[1]->getSpeed()), *delta_time);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            (*players)[1]->updateMovementVector(sf::Vector2f(-(*players)[1]->getSpeed(), 0));
+            (*players)[1]->updateMovementVector(sf::Vector2f(-(*players)[1]->getSpeed(), 0), *delta_time);
     }
 }
 
@@ -67,7 +67,7 @@ int Engine::checkColisionWithWorld(Player p) {
 
 void Engine::applyPhysics() {
     for (Player *p: *players) {
-        p->updateMovementVector(this->vec_gravity*(*delta_time));
+        p->updateMovementVector(this->vec_gravity, *delta_time);
     }
 }
 

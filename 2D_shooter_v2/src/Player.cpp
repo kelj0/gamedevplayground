@@ -24,8 +24,8 @@ bool Player::checkColisionWithPlayer(Player other) {
     return false;
 }
 
-void Player::updateMovementVector(sf::Vector2f new_force) {
-    sf::Vector2f next_vec_movement = (this->vec_movement+new_force);
+void Player::updateMovementVector(sf::Vector2f new_force, float delta_time) {
+    sf::Vector2f next_vec_movement = (this->vec_movement+new_force*delta_time);
     float next_speed = std::sqrt(next_vec_movement.x*next_vec_movement.x + next_vec_movement.y*next_vec_movement.y);
     if (next_speed > MAX_PLAYER_SPEED) {
         this->fspeed = MAX_PLAYER_SPEED;

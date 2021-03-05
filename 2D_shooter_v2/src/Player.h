@@ -16,7 +16,7 @@ public:
     Player(std::string name, float x, float y, float width, float height, float fspeed);
 
     bool checkColisionWithPlayer(Player other);
-    void updateMovementVector(sf::Vector2f new_force);
+    void updateMovementVector(sf::Vector2f new_force, float delta_time);
     void applyVectorForce(float delta_time);
 
     float getSpeed();
