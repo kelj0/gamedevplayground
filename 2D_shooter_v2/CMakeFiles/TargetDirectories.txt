@@ -1,3 +1,0 @@
-/home/user/gamedevplayground/2D_shooter_v2/CMakeFiles/rebuild_cache.dir
-/home/user/gamedevplayground/2D_shooter_v2/CMakeFiles/edit_cache.dir
-/home/user/gamedevplayground/2D_shooter_v2/CMakeFiles/game.dir

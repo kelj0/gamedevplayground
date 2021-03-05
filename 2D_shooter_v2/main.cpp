@@ -10,18 +10,18 @@ int main()
     sf::RenderWindow debug_window(sf::VideoMode(400, 200), "dev");
     debug_window.setPosition(sf::Vector2<int>(400,200));
     window.setPosition(sf::Vector2<int>(800, 200));
-    Player p1("player1", 175, 75, 20, 40, 10);
-    Player p2("player2", 200, 75, 20, 40, 20);
+    Player p1("player1", 175, 75, 20, 40, 300, 50, 1);
+    Player p2("player2", 200, 75, 20, 40, 300, 50, 2);
     std::vector<Player*> players {&p1, &p2};
     float delta_time = 0.f;
     sf::Clock clock;
 
     sf::Font font;
-    if (!font.loadFromFile("/home/user/gamedevplayground/Square.ttf"))
+    if (!font.loadFromFile("/home/kelj0/github/gamedevplayground/Square.ttf"))
         return 0;
 
     DebugEngine dengine(debug_window, players, font);
-    Engine engine(&window, &players, delta_time, window.getSize());
+    Engine engine(&window, &players, delta_time, window.getSize(), font);
     while (window.isOpen()) {
         delta_time = clock.restart().asSeconds();
         if (delta_time > 1.f / 20.f)
