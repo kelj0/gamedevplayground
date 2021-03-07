@@ -10,15 +10,17 @@ private:
     sf::RenderWindow* window;
     std::vector<Player*> *players;
     float *delta_time;
-    sf::Vector2f vec_gravity = sf::Vector2f(0,98.1);
-    float air_resistance = 0.001;
+    sf::Vector2f vec_gravity = sf::Vector2f(0,981);
+    float air_resistance = 0.1;
+    float floor_drag = 20;
+
     sf::Font font;
 public:
     sf::Vector2u world_dimensions;
 
     Engine(sf::RenderWindow *window, std::vector<Player*> *players, float &delta_time, sf::Vector2u world_dimensions, sf::Font font);
     void handleInput();
-    int checkColisionWithWorld(Player p);
+    int checkColisionWithWorld(Player &p);
     void applyPhysics();
     void updatePositions();
     void tick();

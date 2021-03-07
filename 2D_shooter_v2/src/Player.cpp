@@ -19,7 +19,7 @@ Player::Player(std::string name, float x, float y, float width, float height, fl
     player_sprite.setPosition(x, y);
 }
 
-int Player::checkColisionWithPlayer(Player other) {
+int Player::checkColisionWithPlayer(Player &other) {
     /// summary
     /// returns value from 0 to 4 depending on where it hit the world
     /// 0 no colision
@@ -29,19 +29,43 @@ int Player::checkColisionWithPlayer(Player other) {
     /// 4 colision on left
     /// summary
     if (this->player_sprite.getGlobalBounds().intersects(other.player_sprite.getGlobalBounds())) {
-        if (this->y + this->height < other.y+other.height && this->y < other.y + other.height) {
-            this->last_colision = "U";
-            return 1;
-        } else if (this->x + this->width < other.x && this->x > other.x) {
-            this->last_colision = "R";
-            return 2;
-        } else if (other.y > this->y && other.y < this->x + this->height) {
-            this->last_colision = "D";
-            return 3;
+        /*
+         *
+         *                |    |*******
+         *                |    |*other*
+         *                |    |*******
+         *      ----------|----|-----------
+         *              yD|    |
+         *      ----------|----|----------
+         *        ********| xD |
+         *        * this *|    |
+         *        ********|    |
+         *                |
+         */
+        float xD = other.last_x - this->last_x + this->width;
+        float yD = this->last_y - other.last_y+other.height;
+        if (this->last_y < other.last_y + other.height && this->last_y + this->height > other.last_y) {
+            if (xD >= 0) {
+                this->last_colision = "R";
+                other.last_colision = "L";
+                return 2;
+            } else {
+                this->last_colision = "L";
+                other.last_colision = "R";
+                return 4;
+            }
         } else {
-            this->last_colision = "L";
-            return 4;
+            if (yD >= 0) {
+                this->last_colision = "U";
+                other.last_colision = "D";
+                return 1;
+            } else {
+                this->last_colision = "D";
+                other.last_colision = "U";
+                return 3;
+            }
         }
+        return 0;
     } else {
         return 0;
     }
@@ -73,8 +97,22 @@ float Player::getPlayerInputPower() {
 }
 
 void Player::applyDrag(float d) {
-    if (this->current_speed > MAX_PLAYER_SPEED / 2) {
-        this->vec_movement += -this->vec_movement * d;
+    if (!this->is_moving) {
+        if (this->vec_movement.x != 0 && this->vec_movement.x < MAX_PLAYER_SPEED) {
+            if (std::abs(this->vec_movement.x) - d < 0) {
+                this->vec_movement.x = 0;   
+            } else {
+                this->vec_movement.x -= this->vec_movement.x * d;
+            }
+        }
+
+        if (this->vec_movement.y != 0 && this->vec_movement.y < MAX_PLAYER_SPEED) {
+            if (std::abs(this->vec_movement.y) - d < 0) {
+                this->vec_movement.y = 0;
+            } else {
+                this->vec_movement.y -= this->vec_movement.y * d;
+            }
+        }
     }
 }
 

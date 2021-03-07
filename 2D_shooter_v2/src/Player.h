@@ -8,17 +8,18 @@
 class Player {
 public:
     std::string name;
-    float x, y, width, height, restitution;
+    float x, y, width, height, restitution, last_x, last_y;
     float player_input_power;
     float current_speed = 0;
     sf::Vector2f vec_movement;
     sf::RectangleShape player_sprite;
     bool is_moving = false;
+    bool on_floor = false;
     float mass;
-    float MAX_PLAYER_SPEED = 250;
+    float MAX_PLAYER_SPEED = 500;
     Player(std::string name, float x, float y, float width, float height, float player_input_power, float mass, float restitution);
 
-    int checkColisionWithPlayer(Player other);
+    int checkColisionWithPlayer(Player &other);
     void updateMovementVector(sf::Vector2f new_force, float delta_time);
     void applyVectorForce(float delta_time);
 

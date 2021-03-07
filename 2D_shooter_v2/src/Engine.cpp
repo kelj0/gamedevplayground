@@ -54,7 +54,7 @@ void Engine::handleInput() {
     }
 }
 
-int Engine::checkColisionWithWorld(Player p) {
+int Engine::checkColisionWithWorld(Player &p) {
     /// summary
     /// returns value from 0 to 4 depending on where it hit the world
     /// 0 no colision
@@ -68,17 +68,30 @@ int Engine::checkColisionWithWorld(Player p) {
     } else if (p.x + p.width > world_dimensions.x) {
         return 2;
     } else if (p.y + p.height > world_dimensions.y) {
+        p.on_floor = true;
+        p.y = world_dimensions.y - p.height;
         return 3;
     } else if (p.x < 0) {
         return 4;
-    } else {
-        return 0;
     }
+    return 0;
 }
 
 void Engine::applyPhysics() {
     for (Player *p: *players) {
-        p->updateMovementVector(this->vec_gravity, *delta_time);
+        if (std::abs(p->vec_movement.x) < 0.1) {
+            p->vec_movement.x = 0;
+        }
+        if (std::abs(p->vec_movement.y) < 0.1) {
+            p->vec_movement.y = 0;
+        }
+
+        if (!p->on_floor && !p->is_moving) {
+            p->updateMovementVector(this->vec_gravity, *delta_time);
+        }
+        if (p->on_floor) {
+            p->applyDrag(this->floor_drag * (*delta_time));
+        }
     }
 }
 
@@ -89,6 +102,7 @@ void Engine::updatePositions() {
         int colide_type = 0;
         for (Player* p_check: *this->players) {
             if (p->name == p_check->name) {
+                ++collider_i;
                 continue;
             }
             colide_type = p->checkColisionWithPlayer(*p_check);
@@ -99,109 +113,32 @@ void Engine::updatePositions() {
             ++collider_i;
         }
         if (colided_with_player) {
-           /* switch (colide_type) {
-                case 1:
-                    if (p->y + p->height + 0.001 < world_dimensions.y) {
-                        p->y += 0.01;
-                    } else {
-                        (*players)[collider_i]->y -= 0.01;
-                    }
-                    break;
-                case 2:
-                    if (p->x - 0.01 > 0) {
-                        p->x -= 0.01;
-                    } else {
-                        (*players)[collider_i]->x += 0.01;
-                    }
-                    break;
-                case 3:
-                    if (p->y - 0.01 > 0) {
-                        p->vec_movement.y += ((*players)[collider_i]->vec_movement.y * (*players)[collider_i]->mass) / p->mass;
-                        p->y -= 0.01;
-                    } else {
-                        (*players)[collider_i]->y += 0.01;
-                    }
-                    break;
-                case 4:
-                    if (p->x + p->width + 0.01 < world_dimensions.x) {
-                        p->x += 0.01;
-                    } else {
-                        (*players)[collider_i]->x -= 0.01;
-                    }
-                    break;
-            }*/
-
-          /*sf::Vector2f impact = p->vec_movement*p->mass - (*players)[collider_i]->vec_movement*(*players)[collider_i]->mass;
-            p->vec_movement += impact/2000.f;
-            (*players)[collider_i]->vec_movement += impact/2.f;*/
-            float p_new_y; //====you dont know physics====.
-            float p_new_x;
-            float other_new_y;
-            float other_new_x;
             switch (colide_type) {
                 case 1:
-                    p_new_y =
-                            -p->vec_movement.y +
-                            ((*players)[collider_i]->vec_movement.y * (*players)[collider_i]->mass)/
-                            p->mass;
-                    other_new_y = -(*players)[collider_i]->vec_movement.y -
-                            (p->vec_movement.y*p->mass)/
-                            (*players)[collider_i]->mass;
-                    p->vec_movement.y = p_new_y;
-                    (*players)[collider_i]->vec_movement.y = other_new_y;
-                    if (p->y + p->height + 0.01 < world_dimensions.y) {
-                        p->y += 0.01;
-                    } else {
-                        (*players)[collider_i]->y = p->y-(*players)[collider_i]->height-0.01;
-                    }
+                    p->y = ((*players)[collider_i]->y + (*players)[collider_i]->height) + 0.1;
+                    p->vec_movement.y = -(p->vec_movement.y)/2.f;
+                    p->current_speed /= 2.f;
+                    (*players)[collider_i]->vec_movement.y += (-(p->vec_movement.y)/2)*0.8;
+                    (*players)[collider_i]->on_floor = true;
                     break;
                 case 2:
-                    p_new_x =
-                            -p->vec_movement.x +
-                            ((*players)[collider_i]->vec_movement.x * (*players)[collider_i]->mass)/
-                            p->mass;
-                    other_new_x = -(*players)[collider_i]->vec_movement.x -
-                                  (p->vec_movement.x*p->mass)/
-                                  (*players)[collider_i]->mass;
-                    p->vec_movement.x = p_new_x;
-                    (*players)[collider_i]->vec_movement.x = other_new_x;
-                    if (p->x - 0.01 > 0) {
-                        p->x -= 0.01;
-                    } else {
-                        (*players)[collider_i]->x = p->x+p->width+0.01;
-                    }
+                    p->x = p->last_x;
+                    p->vec_movement.x = -(p->vec_movement.x)/2.f;
+                    p->current_speed /= 2.f;
+                    (*players)[collider_i]->vec_movement.x += (-(p->vec_movement.x)/2)*0.8;
                     break;
                 case 3:
-                    p_new_y =
-                            -p->vec_movement.y +
-                            ((*players)[collider_i]->vec_movement.y * (*players)[collider_i]->mass)/
-                            p->mass;
-                    other_new_y = -(*players)[collider_i]->vec_movement.y -
-                                  (p->vec_movement.y*p->mass)/
-                                  (*players)[collider_i]->mass;
-                    p->vec_movement.y = p_new_y;
-                    (*players)[collider_i]->vec_movement.y = other_new_y;
-                    if (p->y - 0.01 > 0) {
-                        p->y -= 0.01;
-                    } else {
-                        (*players)[collider_i]->y = p->y+p->height+0.01;
-                    }
+                    p->y = (*players)[collider_i]->y - p->height - 0.1;
+                    p->vec_movement.y = -(p->vec_movement.y)/2.f;
+                    p->current_speed /= 2.f;
+                    (*players)[collider_i]->vec_movement.y += (-(p->vec_movement.y)/2)*0.8;
+                    p->on_floor = true;
                     break;
                 case 4:
-                    p_new_x =
-                            -p->vec_movement.x +
-                            ((*players)[collider_i]->vec_movement.x * (*players)[collider_i]->mass)/
-                            p->mass;
-                    other_new_x = -(*players)[collider_i]->vec_movement.x -
-                                  (p->vec_movement.x*p->mass)/
-                                  (*players)[collider_i]->mass;
-                    p->vec_movement.x = p_new_x;
-                    (*players)[collider_i]->vec_movement.x = other_new_x;
-                    if (p->x + p->width + 0.01 < world_dimensions.x) {
-                        p->x += 0.01;
-                    } else {
-                        (*players)[collider_i]->x = p->x-(*players)[collider_i]->width - 0.01;
-                    }
+                    p->x = p->last_x;
+                    p->vec_movement.x = -(p->vec_movement.x)/2.f;
+                    p->current_speed /= 2.f;
+                    (*players)[collider_i]->vec_movement.x += (-(p->vec_movement.x)/2)*0.8;
                     break;
             }
         }
@@ -211,23 +148,40 @@ void Engine::updatePositions() {
                 break;
             case 1:
                 p->vec_movement.y = -(p->vec_movement.y)/2.f;
-                p->y = 0.01;
+                p->y = 0;
                 break;
             case 2:
                 p->vec_movement.x = -(p->vec_movement.x)/2.f;
-                p->x = world_dimensions.x - p->width - 0.01;
+                p->x = world_dimensions.x - p->width;
                 break;
             case 3:
                 p->vec_movement.y = -(p->vec_movement.y)/2.f;
-                p->y = world_dimensions.y - p->height - 0.01;
+                p->y = world_dimensions.y - p->height;
                 break;
             case 4:
                 p->vec_movement.x = -(p->vec_movement.x)/2.f;
-                p->x = 0.01;
+                p->x = 0;
                 break;
         }
-    //    p->applyDrag(this->air_resistance);
-        p->applyVectorForce(*delta_time);
+
+        p->last_x = p->x;
+        p->last_y = p->y;
+
+        if (std::abs(p->vec_movement.x) < 0.2 && p->on_floor) {
+            p->vec_movement.x = 0;
+        }
+        if (std::abs(p->vec_movement.y) < 0.2 && p->on_floor) {
+            p->vec_movement.y = 0;
+        }
+        if (p->vec_movement == sf::Vector2f {0,0} && p->on_floor) {
+            p->current_speed = 0;
+        } else {
+            p->applyDrag(this->air_resistance * (*delta_time));
+            p->applyVectorForce(*delta_time);
+        }
+
+
+
         p->player_sprite.setPosition(p->x, p->y);
     }
 }

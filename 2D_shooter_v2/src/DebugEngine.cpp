@@ -14,7 +14,7 @@ void DebugEngine::updateData(){
         b += p->name + ": " + std::to_string(p->x) + ", " + std::to_string(p->y) + "\n";
         b += "m_vector: " + std::to_string(p->vec_movement.x) + ", " + std::to_string(p->vec_movement.y) + "\n";
         b += "speed: " + std::to_string(p->getSpeed()) + "\n";
-        b += "col: " + p->last_colision + "\n";
+        b += "on_floor: " + std::to_string(p->on_floor) + "\n";
     }
     t.setString(b);
     t.setCharacterSize(20);

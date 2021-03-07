@@ -6,12 +6,12 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "2D_shooter");
+    sf::RenderWindow window(sf::VideoMode(1600, 1600), "2D_shooter");
     sf::RenderWindow debug_window(sf::VideoMode(400, 200), "dev");
     debug_window.setPosition(sf::Vector2<int>(400,200));
     window.setPosition(sf::Vector2<int>(800, 200));
-    Player p1("player1", 175, 75, 20, 40, 300, 50, 1);
-    Player p2("player2", 200, 75, 20, 40, 300, 50, 2);
+    Player p1("player1", 175, 75, 200, 300, 500, 50, 1);
+    Player p2("player2", 1000, 75, 100, 150, 500, 50, 2);
     std::vector<Player*> players {&p1, &p2};
     float delta_time = 0.f;
     sf::Clock clock;
