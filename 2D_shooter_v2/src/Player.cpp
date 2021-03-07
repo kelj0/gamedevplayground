@@ -42,8 +42,8 @@ int Player::checkColisionWithPlayer(Player &other) {
          *        ********|    |
          *                |
          */
-        float xD = other.last_x - this->last_x + this->width;
-        float yD = this->last_y - other.last_y+other.height;
+        float xD = other.last_x - (this->last_x + this->width);
+        float yD = this->last_y - (other.last_y + other.height);
         if (this->last_y < other.last_y + other.height && this->last_y + this->height > other.last_y) {
             if (xD >= 0) {
                 this->last_colision = "R";
@@ -56,16 +56,17 @@ int Player::checkColisionWithPlayer(Player &other) {
             }
         } else {
             if (yD >= 0) {
+                other.on_floor = true;
                 this->last_colision = "U";
                 other.last_colision = "D";
                 return 1;
             } else {
+                this->on_floor = true;
                 this->last_colision = "D";
                 other.last_colision = "U";
                 return 3;
             }
         }
-        return 0;
     } else {
         return 0;
     }

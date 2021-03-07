@@ -62,19 +62,28 @@ int Engine::checkColisionWithWorld(Player &p) {
     /// 2 colision on right
     /// 3 colision on bottom
     /// 4 colision on left
+    /// 5 we are on the floor
     /// summary
     if (p.y < 0) {
         return 1;
     } else if (p.x + p.width > world_dimensions.x) {
         return 2;
-    } else if (p.y + p.height > world_dimensions.y) {
-        p.on_floor = true;
-        p.y = world_dimensions.y - p.height;
+    } else if (p.y + p.height > world_dimensions.y) { // this is different from case where p.y+p.h == world.y
+        p.on_floor = true;                            // because here, we flew of the screen (we hit the floor and we apply backforce)
+        p.y = world_dimensions.y - p.height;          // therefore we return 3 so that we later reverse movement vector
         return 3;
     } else if (p.x < 0) {
         return 4;
+    } else if (p.y+p.height == world_dimensions.y && !p.is_moving) { // we are on the floor, we set on floor to true
+        p.on_floor = true;                           // and set player to the according position
+        p.y = world_dimensions.y - p.height;
+        p.vec_movement.y = 0;
+        return 5;
+    } else { // we are in the middle of screen, we just return 0
+        p.on_floor = false;
+        return 0;
     }
-    return 0;
+    // latter check colision with sprites in the world
 }
 
 void Engine::applyPhysics() {
@@ -96,7 +105,7 @@ void Engine::applyPhysics() {
 }
 
 void Engine::updatePositions() {
-    for (Player* p: *this->players) {
+    for (Player* &p: *this->players) {
         int collider_i = 0;
         bool colided_with_player = false;
         int colide_type = 0;
@@ -115,32 +124,46 @@ void Engine::updatePositions() {
         if (colided_with_player) {
             switch (colide_type) {
                 case 1:
-                    p->y = ((*players)[collider_i]->y + (*players)[collider_i]->height) + 0.1;
-                    p->vec_movement.y = -(p->vec_movement.y)/2.f;
-                    p->current_speed /= 2.f;
-                    (*players)[collider_i]->vec_movement.y += (-(p->vec_movement.y)/2)*0.8;
-                    (*players)[collider_i]->on_floor = true;
+                    p->y = ((*players)[collider_i]->y + (*players)[collider_i]->height);
+                    // if p is on the floor, we dont apply any force, we rather null y force again
+                    // (other squeezed him but this is not physics engine so it doesnt have elastic modulus)
+                    if(!p->on_floor) {
+                        p->vec_movement.y = ((-(p->vec_movement.y)*(*players)[collider_i]->mass)/p->mass)*0.5;
+                    } else {
+                        p->vec_movement.y = 0;
+                    }
+                    //p->current_speed /= 2.f;
+                    // dont need check on the floor cause we know other hit p from above, so its impossible to be on the floor
+                    (*players)[collider_i]->vec_movement.y += ((-(p->vec_movement.y)*p->mass)/(*players)[collider_i]->mass)*0.5;
                     break;
                 case 2:
                     p->x = p->last_x;
-                    p->vec_movement.x = -(p->vec_movement.x)/2.f;
-                    p->current_speed /= 2.f;
-                    (*players)[collider_i]->vec_movement.x += (-(p->vec_movement.x)/2)*0.8;
+                    p->vec_movement.x = ((-p->vec_movement.x * (*players)[collider_i]->mass)/p->mass)*0.5;
+                    //p->current_speed /= 2.f;
+                    (*players)[collider_i]->vec_movement.x += ((-(p->vec_movement.x)*p->mass)/(*players)[collider_i]->mass)*0.5;
                     break;
                 case 3:
-                    p->y = (*players)[collider_i]->y - p->height - 0.1;
-                    p->vec_movement.y = -(p->vec_movement.y)/2.f;
-                    p->current_speed /= 2.f;
-                    (*players)[collider_i]->vec_movement.y += (-(p->vec_movement.y)/2)*0.8;
-                    p->on_floor = true;
+                    p->y = (*players)[collider_i]->y - p->height;
+                    p->vec_movement.y = ((-(p->vec_movement.y)*(*players)[collider_i]->mass)/p->mass)*0.5;
+                    //p->current_speed /= 2.f;
+                    // this is case when when p is above other, so p cant be on the floor, and we do the same with other
+                    // (cancel y force in the vector cause objects here dont have elastic modulus
+                    if(!(*players)[collider_i]->on_floor) {
+                        (*players)[collider_i]->vec_movement.y += ((-(p->vec_movement.y)*p->mass)/(*players)[collider_i]->mass)*0.5;
+                    } else {
+                        (*players)[collider_i]->vec_movement.y = 0;
+                    }
                     break;
                 case 4:
                     p->x = p->last_x;
-                    p->vec_movement.x = -(p->vec_movement.x)/2.f;
-                    p->current_speed /= 2.f;
-                    (*players)[collider_i]->vec_movement.x += (-(p->vec_movement.x)/2)*0.8;
+                    p->vec_movement.x = ((-p->vec_movement.x * (*players)[collider_i]->mass)/p->mass)*0.5;
+                    //p->current_speed /= 2.f;
+                    (*players)[collider_i]->vec_movement.x += ((-(p->vec_movement.x)*p->mass)/(*players)[collider_i]->mass)*0.5;
                     break;
             }
+            // if they collided, apply friction and power lose (we cant have 100% force input/output)
+            (*players)[collider_i]->applyDrag(4 * (*delta_time));
+            p->applyDrag(4 * (*delta_time));
         }
 
         switch (checkColisionWithWorld(*p)) {
