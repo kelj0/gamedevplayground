@@ -11,9 +11,11 @@ int main()
     debug_window.setPosition(sf::Vector2<int>(400,200));
     window.setPosition(sf::Vector2<int>(800, 200));
     Player p1("player1", 175, 75, 30, 50, 500, 50, 1);
-    Player p2("player2", 1000, 75, 100, 100, 500, 100, 2);
+    Player p2("player2", 1000, 75, 100, 50, 500, 80, 2);
     std::vector<Player*> players {&p1, &p2};
     float delta_time = 0.f;
+    float fps_counter = 0.f;
+    float fps_clock = 0.f;
     sf::Clock clock;
 
     sf::Font font;
@@ -27,6 +29,15 @@ int main()
         if (delta_time > 1.f / 20.f)
             delta_time = 1.f / 20.f;
 
+        if (fps_clock >= 1) {
+            window.setTitle("2D_shooter [" + std::to_string(int(fps_counter)) + "]");
+            fps_counter = 0;
+            fps_clock = 0;
+        } else {
+            fps_counter += 1;
+            fps_clock += delta_time;
+        }
+
         sf::Event event;
         while (window.pollEvent(event)) {
             switch (event.type) {
@@ -36,6 +47,12 @@ int main()
                 case sf::Event::LostFocus:
                     players[0]->is_moving = false;
                     players[1]->is_moving = false; //TODO add multiplayer support
+                case sf::Event::KeyReleased:
+                    if (sf::Keyboard::S == event.key.code) {
+                        players[1]->standUp();
+                    } else if (sf::Keyboard::Down == event.key.code) {
+                        players[0]->standUp();
+                    }
                 default:
                     ;
                     //break;

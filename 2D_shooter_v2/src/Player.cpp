@@ -57,11 +57,13 @@ int Player::checkColisionWithPlayer(Player &other) {
         } else {
             if (yD >= 0) {
                 other.on_floor = true;
+                other.can_jump = true;
                 this->last_colision = "U";
                 other.last_colision = "D";
                 return 1;
             } else {
                 this->on_floor = true;
+                this->can_jump = true;
                 this->last_colision = "D";
                 other.last_colision = "U";
                 return 3;
@@ -98,22 +100,50 @@ float Player::getPlayerInputPower() {
 }
 
 void Player::applyDrag(float d) {
-    if (!this->is_moving) {
-        if (this->vec_movement.x != 0 && this->vec_movement.x < MAX_PLAYER_SPEED) {
-            if (std::abs(this->vec_movement.x) - d < 0) {
-                this->vec_movement.x = 0;   
-            } else {
-                this->vec_movement.x -= this->vec_movement.x * d;
-            }
+    if (this->vec_movement.x != 0 && this->vec_movement.x < MAX_PLAYER_SPEED) {
+        if (std::abs(this->vec_movement.x) - d < 0) {
+            this->vec_movement.x = 0;
+        } else {
+            this->vec_movement.x -= this->vec_movement.x * d;
         }
+    }
 
-        if (this->vec_movement.y != 0 && this->vec_movement.y < MAX_PLAYER_SPEED) {
-            if (std::abs(this->vec_movement.y) - d < 0) {
-                this->vec_movement.y = 0;
-            } else {
-                this->vec_movement.y -= this->vec_movement.y * d;
-            }
+    if (this->vec_movement.y != 0 && this->vec_movement.y < MAX_PLAYER_SPEED) {
+        if (std::abs(this->vec_movement.y) - d < 0) {
+            this->vec_movement.y = 0;
+        } else {
+            this->vec_movement.y -= this->vec_movement.y * d;
         }
+    }
+}
+
+void Player::jump(float jump_power) {
+    if (!this->can_jump) {
+        return;
+    }
+    this->vec_movement.y = jump_power*(-1);
+    this->y-=0.1;
+    this->player_sprite.setPosition(this->x, this->y);
+    can_jump = false;
+}
+
+void Player::duck() {
+    if (!this->ducking && this->on_floor) {
+        this->ducking = true;
+        this->height /= 2;
+        this->y += this->height;
+        this->player_sprite.setSize(sf::Vector2f(this->width, this->height));
+        this->player_sprite.setPosition(this->x, this->y);
+    }
+}
+
+void Player::standUp() {
+    if (this->ducking) {
+        this->ducking = false;
+        this->y -= this->height;
+        this->height *= 2;
+        this->player_sprite.setSize(sf::Vector2f(this->width, this->height));
+        this->player_sprite.setPosition(this->x, this->y);
     }
 }
 
@@ -128,3 +158,5 @@ sf::Vector2f Player::normalizedVector() {
 float Player::vecLength(sf::Vector2f v) {
     return std::sqrt(v.x*v.x + v.y*v.y);
 }
+
+

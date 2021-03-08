@@ -11,8 +11,9 @@ private:
     std::vector<Player*> *players;
     float *delta_time;
     sf::Vector2f vec_gravity = sf::Vector2f(0,981);
-    float air_resistance = 0.1;
+    float air_resistance = 2;
     float floor_drag = 20;
+    float jump_power = 400;
 
     sf::Font font;
 public:

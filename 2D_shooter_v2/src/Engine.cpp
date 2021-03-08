@@ -19,11 +19,11 @@ void Engine::handleInput() {
     } else {
         (*players)[0]->is_moving = true;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            (*players)[0]->updateMovementVector(sf::Vector2f(0, -(*players)[0]->getPlayerInputPower()), *delta_time);
+            (*players)[0]->jump(this->jump_power);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             (*players)[0]->updateMovementVector(sf::Vector2f((*players)[0]->getPlayerInputPower(), 0), *delta_time);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-            (*players)[0]->updateMovementVector(sf::Vector2f(0, (*players)[0]->getPlayerInputPower()), *delta_time);
+            (*players)[0]->duck();
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             (*players)[0]->updateMovementVector(sf::Vector2f(-(*players)[0]->getPlayerInputPower(), 0), *delta_time);
     }
@@ -35,18 +35,18 @@ void Engine::handleInput() {
     } else {
         (*players)[1]->is_moving = true;
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-            (*players)[1]->updateMovementVector(sf::Vector2f(0, -(*players)[1]->getPlayerInputPower()), *delta_time);
+            (*players)[1]->jump(this->jump_power);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
             (*players)[1]->updateMovementVector(sf::Vector2f((*players)[1]->getPlayerInputPower(), 0), *delta_time);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-            (*players)[1]->updateMovementVector(sf::Vector2f(0, (*players)[1]->getPlayerInputPower()), *delta_time);
+            (*players)[1]->duck();
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
             (*players)[1]->updateMovementVector(sf::Vector2f(-(*players)[1]->getPlayerInputPower(), 0), *delta_time);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        (*players)[0]->vec_movement *= 0.f;
-        (*players)[1]->vec_movement *= 0.f;
+        (*players)[0]->vec_movement = sf::Vector2f(0,0);
+        (*players)[1]->vec_movement = sf::Vector2f(0,0);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
         (*players)[0]->last_colision = ".";
@@ -71,6 +71,7 @@ int Engine::checkColisionWithWorld(Player &p) {
     } else if (p.y + p.height > world_dimensions.y) { // this is different from case where p.y+p.h == world.y
         p.on_floor = true;                            // because here, we flew of the screen (we hit the floor and we apply backforce)
         p.y = world_dimensions.y - p.height;          // therefore we return 3 so that we later reverse movement vector
+        p.can_jump = true;
         return 3;
     } else if (p.x < 0) {
         return 4;
@@ -78,11 +79,25 @@ int Engine::checkColisionWithWorld(Player &p) {
         p.on_floor = true;                           // and set player to the according position
         p.y = world_dimensions.y - p.height;
         p.vec_movement.y = 0;
+        p.can_jump = true;
         return 5;
-    } else { // we are in the middle of screen, we just return 0
-        p.on_floor = false;
-        return 0;
     }
+
+
+    for (Player *other: *players){
+        if(other->name == p.name){
+            continue;
+        }
+        if (other->player_sprite.getGlobalBounds().contains(p.x, p.y+1) ||
+            other->player_sprite.getGlobalBounds().contains(p.x+p.width, p.y+1)) {
+            p.can_jump = true;
+            p.on_floor = true;
+            return 0;
+        }
+    }
+    p.on_floor = false;
+    p.can_jump = false;
+    return 0;
     // latter check colision with sprites in the world
 }
 
@@ -94,12 +109,10 @@ void Engine::applyPhysics() {
         if (std::abs(p->vec_movement.y) < 0.1) {
             p->vec_movement.y = 0;
         }
-
-        if (!p->on_floor && !p->is_moving) {
-            p->updateMovementVector(this->vec_gravity, *delta_time);
-        }
-        if (p->on_floor) {
+        if (p->on_floor && !p->is_moving) {
             p->applyDrag(this->floor_drag * (*delta_time));
+        } else {
+            p->updateMovementVector(this->vec_gravity, *delta_time);
         }
     }
 }
@@ -127,28 +140,30 @@ void Engine::updatePositions() {
                     p->y = ((*players)[collider_i]->y + (*players)[collider_i]->height);
                     // if p is on the floor, we dont apply any force, we rather null y force again
                     // (other squeezed him but this is not physics engine so it doesnt have elastic modulus)
-                    if(!p->on_floor) {
+                    // we also check if speed is too small, and if it is we just null it (force is too weak to cause push on player)
+                    if(!p->on_floor && p->vec_movement.y > 0.2) {
                         p->vec_movement.y = ((-(p->vec_movement.y)*(*players)[collider_i]->mass)/p->mass)*0.5;
                     } else {
                         p->vec_movement.y = 0;
                     }
-                    //p->current_speed /= 2.f;
                     // dont need check on the floor cause we know other hit p from above, so its impossible to be on the floor
-                    (*players)[collider_i]->vec_movement.y += ((-(p->vec_movement.y)*p->mass)/(*players)[collider_i]->mass)*0.5;
+                    (*players)[collider_i]->vec_movement.y = ((-(p->vec_movement.y) * (*players)[collider_i]->mass) / p->mass) * 0.5;
                     break;
                 case 2:
                     p->x = p->last_x;
                     p->vec_movement.x = ((-p->vec_movement.x * (*players)[collider_i]->mass)/p->mass)*0.5;
-                    //p->current_speed /= 2.f;
                     (*players)[collider_i]->vec_movement.x += ((-(p->vec_movement.x)*p->mass)/(*players)[collider_i]->mass)*0.5;
                     break;
                 case 3:
                     p->y = (*players)[collider_i]->y - p->height;
-                    p->vec_movement.y = ((-(p->vec_movement.y)*(*players)[collider_i]->mass)/p->mass)*0.5;
-                    //p->current_speed /= 2.f;
+                    if ( p->vec_movement.y > 0.2) {
+                        p->vec_movement.y = ((-(p->vec_movement.y) * (*players)[collider_i]->mass) / p->mass) * 0.5;
+                    } else {
+                        p->vec_movement.y = 0;
+                    }
                     // this is case when when p is above other, so p cant be on the floor, and we do the same with other
                     // (cancel y force in the vector cause objects here dont have elastic modulus
-                    if(!(*players)[collider_i]->on_floor) {
+                    if(!(*players)[collider_i]->on_floor && (*players)[collider_i]->vec_movement.y > 0.2) {
                         (*players)[collider_i]->vec_movement.y += ((-(p->vec_movement.y)*p->mass)/(*players)[collider_i]->mass)*0.5;
                     } else {
                         (*players)[collider_i]->vec_movement.y = 0;
@@ -157,7 +172,6 @@ void Engine::updatePositions() {
                 case 4:
                     p->x = p->last_x;
                     p->vec_movement.x = ((-p->vec_movement.x * (*players)[collider_i]->mass)/p->mass)*0.5;
-                    //p->current_speed /= 2.f;
                     (*players)[collider_i]->vec_movement.x += ((-(p->vec_movement.x)*p->mass)/(*players)[collider_i]->mass)*0.5;
                     break;
             }
