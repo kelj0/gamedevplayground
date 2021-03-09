@@ -103,7 +103,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../2D_shooter_v1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../2D_level_designer" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
@@ -136,7 +136,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1614804590908</updated>
-      <workItem from="1614804591962" duration="73490000" />
+      <workItem from="1614804591962" duration="78216000" />
     </task>
     <servers />
   </component>
