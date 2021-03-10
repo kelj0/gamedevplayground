@@ -12,25 +12,22 @@ LevelDesigner::LevelDesigner(sf::RenderWindow *window, int pixels_per_sprite) {
     r.setFillColor(sf::Color::Black);
     r.setOutlineThickness(0.7);
     r.setOutlineColor(sf::Color::White);
-    this->grid = std::vector<sf::RectangleShape>(this->window_dimensions.x*this->window_dimensions.y,r);
+    this->grid = std::vector<sf::RectangleShape>(
+            (this->window_dimensions.x/this->pixels_per_sprite)*
+            (this->window_dimensions.y/this->pixels_per_sprite),r);
 }
 
 void LevelDesigner::handleInput() {
-    if (!user_lock) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            sf::Vector2i pressed_location = sf::Mouse::getPosition(*this->window);
-            last_pressed_location = pressed_location;
-            addGridItem(pressed_location, GROUND);//this->active_sprite);
-            user_interaction = true;
-            user_lock = true;
-        } else if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-            sf::Vector2i pressed_location = sf::Mouse::getPosition(*this->window);
-            deleteGridItem(pressed_location);
-            user_interaction = true;
-            user_lock = true;
-        } else {
-            user_interaction = false;
-        }
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        sf::Vector2i pressed_location = sf::Mouse::getPosition(*this->window);
+        addGridItem(pressed_location, GROUND);//this->active_sprite);
+        user_interaction = true;
+    } else if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+        sf::Vector2i pressed_location = sf::Mouse::getPosition(*this->window);
+        deleteGridItem(pressed_location);
+        user_interaction = true;
+    } else {
+        user_interaction = false;
     }
 }
 
@@ -77,16 +74,9 @@ void LevelDesigner::deleteGridItem(sf::Vector2i pos) {
 }
 
 void LevelDesigner::tick() {
+    window->clear();
     handleInput();
-
-    if (this->user_interaction) {
-        window->clear();
-        this->drawGrid();
-        this->user_interaction = false;
-        window->display();
-    }
-}
-
-void LevelDesigner::resetUserLock() {
-    this->user_lock = false;
+    this->drawGrid();
+    this->user_interaction = false;
+    window->display();
 }

@@ -19,8 +19,6 @@ private:
     };
     availableSprites active_sprite = EMPTY;
     bool user_interaction = true;
-    bool user_lock = false;
-    sf::Vector2i last_pressed_location;
 public:
     LevelDesigner(sf::RenderWindow *window, int pixels_per_sprite);
 
@@ -31,8 +29,6 @@ public:
     void addGridItem(sf::Vector2i pos, availableSprites sprite);
     void deleteGridItem(sf::Vector2i pos);
     void tick();
-
-    void resetUserLock();
 };
 
 

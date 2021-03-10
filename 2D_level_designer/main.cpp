@@ -10,11 +10,6 @@ int main()
     float fps_counter = 0.f;
     float fps_clock = 0.f;
     sf::Clock clock;
-
-
-    // initial draw of everything
-    level_designer.drawGrid();
-    window.display();
     while (window.isOpen())
     {
         if (fps_clock >= 1) {
@@ -25,17 +20,26 @@ int main()
             fps_counter += 1;
             fps_clock += clock.restart().asSeconds();
         }
-        if (fps_clock > 0.2) {
-            level_designer.resetUserLock();
-        }
 
         sf::Event event;
+        bool clicked_outside = false;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
+            switch (event.type) {
+                case sf::Event::Closed:
+                    window.close();
+                    break;
+                case sf::Event::LostFocus:
+                    clicked_outside = true;
+                    break;
+                case sf::Event::GainedFocus:
+                    clicked_outside = false;
+                    break;
+            }
         }
-        level_designer.tick();
+        if (!clicked_outside) {
+            level_designer.tick();
+        }
     }
     return 0;
 }
