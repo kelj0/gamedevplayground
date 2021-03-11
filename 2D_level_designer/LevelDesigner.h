@@ -18,7 +18,7 @@ private:
         EMPTY
     };
     availableSprites active_sprite = EMPTY;
-    bool user_interaction = true;
+    sf::Vector2i pressed_location;
 public:
     LevelDesigner(sf::RenderWindow *window, int pixels_per_sprite);
 

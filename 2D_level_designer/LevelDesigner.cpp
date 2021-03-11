@@ -18,16 +18,16 @@ LevelDesigner::LevelDesigner(sf::RenderWindow *window, int pixels_per_sprite) {
 }
 
 void LevelDesigner::handleInput() {
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        sf::Vector2i pressed_location = sf::Mouse::getPosition(*this->window);
-        addGridItem(pressed_location, GROUND);//this->active_sprite);
-        user_interaction = true;
-    } else if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-        sf::Vector2i pressed_location = sf::Mouse::getPosition(*this->window);
-        deleteGridItem(pressed_location);
-        user_interaction = true;
-    } else {
-        user_interaction = false;
+    pressed_location = sf::Mouse::getPosition(*this->window);
+    if (pressed_location.x >= 0 && pressed_location.x <= this->window_dimensions.x &&
+            pressed_location.y >= 0 && pressed_location.y <= this->window_dimensions.y) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            pressed_location = sf::Mouse::getPosition(*this->window);
+            addGridItem(pressed_location, GROUND);//this->active_sprite);
+        } else if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+            sf::Vector2i pressed_location = sf::Mouse::getPosition(*this->window);
+            deleteGridItem(pressed_location);
+        }
     }
 }
 
@@ -77,6 +77,5 @@ void LevelDesigner::tick() {
     window->clear();
     handleInput();
     this->drawGrid();
-    this->user_interaction = false;
     window->display();
 }

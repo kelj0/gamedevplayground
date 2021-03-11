@@ -29,11 +29,11 @@ int main()
                 case sf::Event::Closed:
                     window.close();
                     break;
-                case sf::Event::LostFocus:
-                    clicked_outside = true;
-                    break;
                 case sf::Event::GainedFocus:
                     clicked_outside = false;
+                    break;
+                default:
+                    clicked_outside = true;
                     break;
             }
         }
