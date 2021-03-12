@@ -9,18 +9,22 @@
 
 class LevelDesigner {
 private:
-    sf::RenderWindow *window;
-    sf::Vector2u window_dimensions;
+    sf::RenderWindow *main_window;
+    sf::RenderWindow *menu_window;
+    sf::Vector2u main_window_dimensions;
+    sf::Vector2u menu_window_dimensions;
     int pixels_per_sprite;
     std::vector<sf::RectangleShape> grid;
+
     enum availableSprites {
         GROUND, //todo add more sprites
+        WATER,
         EMPTY
     };
     availableSprites active_sprite = EMPTY;
     sf::Vector2i pressed_location;
 public:
-    LevelDesigner(sf::RenderWindow *window, int pixels_per_sprite);
+    LevelDesigner(sf::RenderWindow *main_window, sf::RenderWindow *menu_window, int pixels_per_sprite);
 
     void handleInput();
     void changeActiveSprite (availableSprites s);
@@ -28,7 +32,9 @@ public:
     void drawGrid();
     void addGridItem(sf::Vector2i pos, availableSprites sprite);
     void deleteGridItem(sf::Vector2i pos);
+    void drawMenuSprites();
     void tick();
+
 };
 
 
