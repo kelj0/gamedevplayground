@@ -5,6 +5,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/Mouse.hpp>
+#include <map>
 
 
 class LevelDesigner {
@@ -15,12 +16,15 @@ private:
     sf::Vector2u menu_window_dimensions;
     int pixels_per_sprite;
     std::vector<sf::RectangleShape> grid;
-
+    std::vector<sf::RectangleShape> sprites;
     enum availableSprites {
+        EMPTY,
         GROUND, //todo add more sprites
         WATER,
-        EMPTY
+        GRASS,
+        LAST
     };
+    std::map<availableSprites, sf::Color> sprite_map; // todo: change to texture
     availableSprites active_sprite = EMPTY;
     sf::Vector2i pressed_location;
 public:

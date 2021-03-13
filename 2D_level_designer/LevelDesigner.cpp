@@ -17,6 +17,29 @@ LevelDesigner::LevelDesigner(sf::RenderWindow *main_window, sf::RenderWindow *me
     this->grid = std::vector<sf::RectangleShape>(
             (this->main_window_dimensions.x / this->pixels_per_sprite) *
             (this->main_window_dimensions.y / this->pixels_per_sprite), r);
+
+    for (int i = 0; i != LAST; ++i) {
+        switch (static_cast<availableSprites>(i)) {
+            case EMPTY:
+                r.setFillColor(sf::Color::Black);
+                this->sprite_map[EMPTY] = sf::Color::Black;
+                break;
+            case GROUND:
+                r.setFillColor(sf::Color(87, 65, 47));
+                this->sprite_map[GROUND] = sf::Color(87, 65, 47);
+                break;
+            case WATER:
+                r.setFillColor(sf::Color(24, 61, 97));
+                this->sprite_map[WATER] = sf::Color(24, 61, 97);
+                break;
+            case GRASS:
+                r.setFillColor(sf::Color::Green);
+                this->sprite_map[GRASS] = sf::Color::Green;
+                break;
+        }
+        this->sprites.push_back(r);
+
+    }
 }
 
 void LevelDesigner::handleInput() {
@@ -34,13 +57,27 @@ void LevelDesigner::handleInput() {
                 -pressed_location.x <= this->menu_window_dimensions.x &&
                 pressed_location.y >= 0 && pressed_location.y <= this->menu_window_dimensions.y) {
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            pressed_location = sf::Mouse::getPosition(*this->menu_window);
             //TODO: for each sprite check if mouse in, if in change this->active sprite to it
-            if (this->active_sprite == GROUND) {
-                changeActiveSprite(WATER);
-            } else {
-                changeActiveSprite(GROUND);
+            for(sf::RectangleShape r : this->sprites) {
+                if(r.getLocalBounds().contains(pressed_location.x, pressed_location.y)) {
+                    for (std::pair<availableSprites, sf::Color> a : this->sprite_map) {
+                        if (a.second == r.getFillColor()) {
+                            changeActiveSprite(a.first);
+                        }
+                    }
+                }
             }
         }
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
+        changeActiveSprite(EMPTY);
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
+        changeActiveSprite(GROUND);
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) {
+        changeActiveSprite(WATER);
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
+        changeActiveSprite(GRASS);
     }
 }
 
@@ -68,21 +105,9 @@ void LevelDesigner::drawGrid() {
 }
 
 void LevelDesigner::addGridItem(sf::Vector2i pos, LevelDesigner::availableSprites sprite) {
-    sf::Color col;
-    switch (sprite) {
-        case EMPTY:
-            col = sf::Color::Black;
-            break;
-        case GROUND:
-            col = sf::Color::Green;
-            break;
-        case WATER:
-            col = sf::Color::Blue;
-            break;
-    }
-    this->grid[
-            ((this->main_window_dimensions.y / this->pixels_per_sprite) * (pos.y / this->pixels_per_sprite)) +
-            (pos.x/this->pixels_per_sprite)].setFillColor(col);
+    int index = ((this->main_window_dimensions.y / this->pixels_per_sprite) * (pos.y / this->pixels_per_sprite)) +
+                    (pos.x/this->pixels_per_sprite);
+    this->grid[index].setFillColor(this->sprite_map[sprite]);
 }
 
 void LevelDesigner::deleteGridItem(sf::Vector2i pos) {
@@ -91,7 +116,17 @@ void LevelDesigner::deleteGridItem(sf::Vector2i pos) {
 
 
 void LevelDesigner::drawMenuSprites() {
-
+    int x = 15;
+    int y = 10;
+    for (sf::RectangleShape &s : this->sprites) {
+        if (x + this->pixels_per_sprite >= this->menu_window_dimensions.x) {
+            x = 15;
+            y += this->pixels_per_sprite+10;
+        }
+        s.setPosition(x, y);
+        menu_window->draw(s);
+        x += this->pixels_per_sprite+10;
+    }
 }
 
 void LevelDesigner::tick() {
