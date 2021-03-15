@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/Mouse.hpp>
 #include <map>
@@ -27,6 +28,8 @@ private:
     std::map<availableSprites, sf::Color> sprite_map; // todo: change to texture
     availableSprites active_sprite = EMPTY;
     sf::Vector2i pressed_location;
+    sf::RectangleShape export_button;
+    sf::Text txt_export_button;
 public:
     LevelDesigner(sf::RenderWindow *main_window, sf::RenderWindow *menu_window, int pixels_per_sprite);
 
@@ -38,7 +41,6 @@ public:
     void deleteGridItem(sf::Vector2i pos);
     void drawMenuSprites();
     void tick();
-
 };
 
 

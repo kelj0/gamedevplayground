@@ -1,6 +1,16 @@
 #include "LevelDesigner.h"
 
 LevelDesigner::LevelDesigner(sf::RenderWindow *main_window, sf::RenderWindow *menu_window, int pixels_per_sprite) {
+    sf::Font font;
+    if (!font.loadFromFile("/home/kelj0/github/gamedevplayground/Square.ttf")) {
+        exit(-1);
+    }
+    this->txt_export_button.setFont(font);
+    this->txt_export_button.setString("EXPORT");
+    this->txt_export_button.setCharacterSize(15);
+    this->export_button.setFillColor(sf::Color::White);
+    this->export_button.setSize(sf::Vector2f(40,20));
+
     this->main_window = main_window;
     this->menu_window = menu_window;
     this->pixels_per_sprite = pixels_per_sprite;
@@ -38,7 +48,6 @@ LevelDesigner::LevelDesigner(sf::RenderWindow *main_window, sf::RenderWindow *me
                 break;
         }
         this->sprites.push_back(r);
-
     }
 }
 
@@ -60,10 +69,13 @@ void LevelDesigner::handleInput() {
             pressed_location = sf::Mouse::getPosition(*this->menu_window);
             //TODO: for each sprite check if mouse in, if in change this->active sprite to it
             for(sf::RectangleShape r : this->sprites) {
-                if(r.getLocalBounds().contains(pressed_location.x, pressed_location.y)) {
+                sf::Vector2f a = r.getPosition();
+                sf::Vector2f wid = r.getSize();
+                if(r.getGlobalBounds().contains(pressed_location.x, pressed_location.y)) {
                     for (std::pair<availableSprites, sf::Color> a : this->sprite_map) {
                         if (a.second == r.getFillColor()) {
                             changeActiveSprite(a.first);
+                            break;
                         }
                     }
                 }
@@ -127,6 +139,12 @@ void LevelDesigner::drawMenuSprites() {
         menu_window->draw(s);
         x += this->pixels_per_sprite+10;
     }
+    sf::Vector2i w_loc = this->menu_window->getPosition();
+    this->export_button.setPosition(w_loc.x+10, w_loc.y-30);
+    sf::Vector2f btn_loc = this->export_button.getPosition();
+    this->txt_export_button.setPosition(btn_loc.x + 5, btn_loc.y + 5);
+    menu_window->draw(this->export_button);
+    menu_window->draw(this->txt_export_button);
 }
 
 void LevelDesigner::tick() {
